@@ -1,0 +1,12 @@
+{
+    "movies": [
+        {
+            "title": "Fighters",
+            "type": "Adult",
+            "runtime": "02:58:00",
+            "release_date": "07-06-2014",
+            "href": "http://www.digitalplayground.com/movies/info/814/fighters/",
+            "uid": "digplaygrnd"
+        }
+    ]
+}
