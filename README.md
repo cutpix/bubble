@@ -20,6 +20,3 @@ For more information on the optimizer:
 
 For more information on using requirejs:
 `http://requirejs.org/docs/api.html`
-
-Readme Online:
-`https://github.com/volojs/create-template`
