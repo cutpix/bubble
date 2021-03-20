@@ -1,0 +1,34 @@
+{
+    "studios": [
+        {
+            "brazzersnet": {
+                "name": "Brazzers Network",
+                "type": "Private Subsidiary of MindGeek",
+                "industry": "Pornography",
+                "founded": "June 22, 2005",
+                "headquarters": "Montreal, Quebec, Canada",
+                "area_served": "Worldwide",
+                "products": [
+                    "Pornographic films"
+                ],
+                "parent": "MindGeek",
+                "website": "http://www.brazzers.com/"
+            }
+        },
+        {
+            "digplaygrnd": {
+                "name": "Digital Playground",
+                "type": "Private Subsidiary of MindGeek",
+                "industry": "Pornography",
+                "founded": "2003",
+                "headquarters": "Burbank, Los Angeles, California, U.S.",
+                "area_served": "Worldwide",
+                "products": [
+                    "Pornographic films"
+                ],
+                "parent": "MindGeek",
+                "website": "http://www.digitalplayground.com/"
+            }
+        }
+    ]
+}
