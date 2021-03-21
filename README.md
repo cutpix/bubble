@@ -1,5 +1,7 @@
 # This web project has the following setup
 
+[![JS.ORG Logo](http://logo.js.org/png/github_header.png)](http://js.org)
+
 * www/ - the web assets for the project
   * index.html - the entry point into the app.
   * app.js - the top-level config script used by index.html
