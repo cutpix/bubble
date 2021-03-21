@@ -1,6 +1,6 @@
 # This web project has the following setup
 
-[![JS.ORG Logo](http://logo.js.org/png/github_header.png)](http://js.org)
+[![Bubble Logo](https://cutpix.github.com/bubble/images/png/bubble_cover.png)](https://cutpix.github.com/bubble)
 
 * www/ - the web assets for the project
   * index.html - the entry point into the app.gi status
