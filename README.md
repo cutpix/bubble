@@ -1,7 +1,9 @@
 # This web project has the following setup
 
+[![JS.ORG Logo](http://logo.js.org/png/github_header.png)](http://js.org)
+
 * www/ - the web assets for the project
-  * index.html - the entry point into the app.
+  * index.html - the entry point into the app.gi status
   * app.js - the top-level config script used by index.html
   * app/ - the directory to store project-specific scripts.
   * lib/ - the directory to hold third party scripts.
