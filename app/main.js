@@ -1,0 +1,1 @@
+define(["require","data"],function(e,o){"use strict";var i=o.get("bookmarks",{id:15});console.log(i)});

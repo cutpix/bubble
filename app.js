@@ -8,7 +8,7 @@
   define: false, window: false, process: false, Packages: false,
   java: false, location: false */
 
-define(['module'], function(module) {
+define('text',['module'], function(module) {
     'use strict';
 
     var text, fs,
@@ -331,3 +331,150 @@ define(['module'], function(module) {
 
     return text;
 });
+/** @license
+ * RequireJS plugin for loading JSON files
+ * - depends on Text plugin and it was HEAVILY "inspired" by it as well.
+ * Author: Miller Medeiros
+ * Version: 0.4.0 (2014/04/10)
+ * Released under the MIT license
+ */
+define('json',['text'], function(text) {
+
+    var CACHE_BUST_QUERY_PARAM = 'bust',
+        CACHE_BUST_FLAG = '!bust',
+        jsonParse = (typeof JSON !== 'undefined' && typeof JSON.parse === 'function') ? JSON.parse : function(val) {
+            return eval('(' + val + ')'); //quick and dirty
+        },
+        buildMap = {};
+
+    function cacheBust(url) {
+        url = url.replace(CACHE_BUST_FLAG, '');
+        url += (url.indexOf('?') < 0) ? '?' : '&';
+        return url + CACHE_BUST_QUERY_PARAM + '=' + Math.round(2147483647 * Math.random());
+    }
+
+    //API
+    return {
+
+        load: function(name, req, onLoad, config) {
+            if ((config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM + '=') !== -1)) || (req.toUrl(name).indexOf('empty:') === 0)) {
+                //avoid inlining cache busted JSON or if inlineJSON:false
+                //and don't inline files marked as empty!
+                onLoad(null);
+            } else {
+                text.get(req.toUrl(name), function(data) {
+                        var parsed;
+                        if (config.isBuild) {
+                            buildMap[name] = data;
+                            onLoad(data);
+                        } else {
+                            try {
+                                parsed = jsonParse(data);
+                            } catch (e) {
+                                onLoad.error(e);
+                            }
+                            onLoad(parsed);
+                        }
+                    },
+                    onLoad.error, {
+                        accept: 'application/json'
+                    }
+                );
+            }
+        },
+
+        normalize: function(name, normalize) {
+            // used normalize to avoid caching references to a "cache busted" request
+            if (name.indexOf(CACHE_BUST_FLAG) !== -1) {
+                name = cacheBust(name);
+            }
+            // resolve any relative paths
+            return normalize(name);
+        },
+
+        //write method based on RequireJS official text plugin by James Burke
+        //https://github.com/jrburke/requirejs/blob/master/text.js
+        write: function(pluginName, moduleName, write) {
+            if (moduleName in buildMap) {
+                var content = buildMap[moduleName];
+                write('define("' + pluginName + '!' + moduleName + '", function(){ return ' + content + ';});\n');
+            }
+        }
+
+    };
+});
+
+define("json!../data/bookmarks.json", function(){ return [
+    {
+        "id": 10,
+        "title": "Google Search",
+        "href": "https://www.google.com/"
+    },
+    {
+        "id": 15,
+        "title": "Learn to Develop with Microsoft Developer Network | MSDN",
+        "href": "https://msdn.microsoft.com/en-us/default.aspx"
+    },
+    {
+        "id": 20,
+        "title": "iPhone 6s - Apple",
+        "href": "http://www.apple.com/"
+    },
+    {
+        "id": 25,
+        "title": "Facebook Social Network",
+        "href": "https://www.facebook.com/"
+    },
+    {
+        "id": 30,
+        "title": "YouTube",
+        "href": "https://www.youtube.com/"
+    }
+];});
+
+define('data',[
+    'require',
+    'json!../data/bookmarks.json'
+], function (require, bookmarks) {
+    'use strict';
+
+    function get(url, obj) {
+        return bookmarks.filter(function (value) {
+            return obj.id == value.id;
+        });
+    }
+
+    return {
+        get: get,
+        bookmarks
+    }
+});
+define('app/main',[
+    'require',
+    'data'
+], function (require, data) {
+    'use strict';
+
+    var bookmark = data.get('bookmarks', {
+        id: 15
+    });
+
+    console.log(bookmark);
+});
+// For any third party dependencies, like jQuery, place them in the lib folder.
+
+// Configure loading modules from the lib directory,
+// except for 'app' ones, which are in a sibling directory.
+requirejs.config({
+    baseUrl: 'lib',
+    paths: {
+        app: '../app',
+        text: 'text',
+        json: 'json'
+    }
+});
+
+// Start loading the main app file. Put all of your application logic in there.
+requirejs(['app/main']);
+define("app", function(){});
+

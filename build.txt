@@ -1,0 +1,13 @@
+
+css/styles.css
+----------------
+css/styles.css
+
+app.js
+----------------
+lib/text.js
+lib/json.js
+json!../data/bookmarks.json
+lib/data.js
+app/main.js
+app.js
