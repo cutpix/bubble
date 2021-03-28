@@ -1,0 +1,19 @@
+{
+  "name": "bubble",
+  "version": "1.0.0",
+  "description": "[![Bubble Logo](https://cutpix.github.com/bubble/images/png/bubble_cover.png)](https://cutpix.github.com/bubble)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cutpix/bubble.git"
+  },
+  "author": "Andrii Pavliuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cutpix/bubble/issues"
+  },
+  "homepage": "https://github.com/cutpix/bubble#readme"
+}
