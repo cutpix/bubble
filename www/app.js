@@ -7,7 +7,7 @@ requirejs.config({
     paths: {
         app: '../app',
         text: 'text',
-        json: 'json'
+        json: 'json',
     }
 });
 
