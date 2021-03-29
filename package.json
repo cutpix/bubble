@@ -2,9 +2,9 @@
   "name": "bubble",
   "version": "1.0.0",
   "description": "[![Bubble Logo](https://cutpix.github.com/bubble/images/png/bubble_cover.png)](https://cutpix.github.com/bubble)",
-  "main": "app.js",
+  "main": "/www/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node tools/r.js -o tools/build.json"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cutpix/bubble/issues"
   },
-  "homepage": "https://github.com/cutpix/bubble#readme"
+  "homepage": "https://cutpix.github.com/bubble",
+  "dependencies": {
+    "firebase": "^8.3.1"
+  }
 }
